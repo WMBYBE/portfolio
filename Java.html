@@ -1,0 +1,61 @@
+<title>Java Login Tracker</title>
+<header>
+
+</header>
+<body>
+    <h1> Java project that utilizes Frames to track a counter of Users logged in.</h1>
+    <div>
+        <h1>Code Snippets</h1>
+        <blockquote>    private void enterButtonClicked() {
+            String name = nameField.getText().trim();
+            if(!name.isEmpty()) {
+                loginCounts.put(name, loginCounts.getOrDefault(name, 0)+1);
+                nameField.clear();
+                update();
+            }
+        }
+        private void update() {
+            mapArea.clear();
+            mapArea.appendText("Login Counts: \n");
+            for(Map.Entry<String, Integer> entry : loginCounts.entrySet()) {
+                mapArea.appendText(entry.getKey() + ": " + entry.getValue() + "\n");
+            }
+            
+            
+        }</blockquote>
+        <blockquote> public void start(Stage stage) {
+            stage.setTitle("Login Tracker");
+            
+            GridPane grid = new GridPane();
+            grid.setAlignment(Pos.TOP_CENTER);
+            grid.setPadding(new Insets(25, 25, 25, 25));
+            grid.setHgap(10);
+            grid.setVgap(10);
+            
+            Scene scene = new Scene(grid, 400, 250);
+            
+            grid.add(new Label("Enter Username:"), 0,0);
+            nameField = new TextField();
+            grid.add(nameField, 1, 0);
+            
+            Button enterButton = new Button("Calculate");
+            enterButton.setOnAction(event -> enterButtonClicked());
+            
+            Button exitButton = new Button("Exit");
+            exitButton.setOnAction(event -> exitButtonClicked());
+            
+            HBox buttonBox = new HBox(10);
+            buttonBox.getChildren().add(enterButton);
+            buttonBox.getChildren().add(exitButton);
+            buttonBox.setAlignment(Pos.BOTTOM_RIGHT);
+            grid.add(buttonBox, 0, 1, 2, 1);
+            
+            mapArea = new TextArea();
+            mapArea.setEditable(false);
+            grid.add(mapArea, 0, 2, 2,1);
+            
+            stage.setScene(scene);
+            stage.show();
+        }</blockquote>
+    </div>
+</body>
