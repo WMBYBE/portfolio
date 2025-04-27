@@ -54,7 +54,7 @@ img {
     margin: 10px 0;
 }
 
-/* Code snippet (blockquote) styling */
+/* Code snippet styling */
 blockquote {
     background-color: #eef3f7;
     border-left: 5px solid #0074D9;
@@ -87,18 +87,41 @@ textarea {
     resize: vertical;
 }
 
-/* Button styling (if you use buttons inside your pages) */
-button {
-    background-color: #0074D9;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #0074D9, #00C6FF);
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-title {
+    font-size: 1.8rem;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
+    font-weight: bold;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #005fa3;
+.navbar-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
