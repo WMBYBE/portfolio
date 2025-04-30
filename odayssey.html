@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="style.css">
 <title>Odayssey App</title>
-<?php include('_partials/webservice/header.html'); ?>
 
+<body>
+    <div id="header-container"></div>
 <h1>Odayssey</h1>
 <p>Odayssey is an App developed as a group Capstone Project. This project utlizing TypeScript, JavaScript, Node.js, and React Native.</p>
 <p>Odayssey is a self help app that provides users with a set of daily and weekly task to accomplish with the aim of improving 
@@ -17,3 +18,12 @@
         <P>Tasks are presented to the user in both daily and weekly increments. Users can see the time remaining before the next reset.</P>
         <img src="Assets/odayssey/tasks.png" alt="task page">
     </div>
+    <script>
+        fetch('_partials/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error = console.error('error loading the header', error));
+    </script>
+</body>

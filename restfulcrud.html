@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="style.css">
 <title>Restful Web Serive</title>
-<?php include('_partials/webservice/header.html'); ?>
-
+<body>
+    <div id="header-container"></div>
 <h1>RESTful AJAX-JSON-PHP-MySQL DB Web Service</h1>
 <p>This group project involved creating a unique CRUD AJAJ-PHP-MySQL web service that includes
     a MySQL Database, a PHP class that provides properties of each table, a Database class that includes CRUD functions, and an API for JSON responses. </p>
@@ -127,3 +127,12 @@
         </xmp>
     </blockquote>
 </div>
+<script>
+    fetch('_partials/webservice/header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+    })
+    .catch(error = console.error('error loading the header', error));
+</script>
+</body>

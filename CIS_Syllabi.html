@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="style.css">
 <Title>CIS Syllabi</Title>
-<?php include('_partials/header.html'); ?>
 <body>
+    <div id="header-container"></div>
     <h1> STI syllabi</h1>
     <a class="button" href="Syllabus/CIS112.pdf">CIS 112  Network Electronics</a>
     <a class="button"href="Syllabus/CIS130.pdf">CIS 130  Introduction to Programming</a>
@@ -22,4 +22,12 @@
     <a class="button" href="Syllabus/CIS248.pdf">CIS 248  Advanced Application Development</a>
     <a class="button"href="Syllabus/CIS266.pdf">CIS 266  Web Services</a>
     <a class="button"href="Syllabus/CIS296.pdf">CIS 296  Advanced MS Web Development</a>
+    <script>
+        fetch('_partials/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error = console.error('error loading the header', error));
+    </script>
 </body>

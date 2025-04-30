@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="style.css">
 <title>Java Login Tracker</title>
-<?php include('_partials/header.html'); ?>
 <body>
+
+    <div id="header-container"></div>
     <h1> Java project that utilizes Frames to track a counter of Users logged in.</h1>
     <div>
         <img src="Assets/Java/input.png" alt="input">
@@ -62,4 +63,13 @@
             stage.show();<br>
         }</blockquote>
     </div>
+
+    <script>
+        fetch('_partials/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error = console.error('error loading the header', error));
+    </script>
 </body>
