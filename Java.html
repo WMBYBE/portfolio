@@ -1,8 +1,20 @@
-<link rel="stylesheet" href="style.css">
-<title>Java Login Tracker</title>
+<header>
+    <link rel="stylesheet" href="style.css">
+    <title>Java Login Tracker</title>
+    <nav class="navbar">
+        <div class="navbar-title">William Brouillette</div>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Assets/WilliamBrouilletteResume.pdf">Resume</a></li>
+            <li><a href="CIS_Syllabi.html">CIS Syllabi</a></li>
+            <li><a href="Java.html">Java Project</a></li>
+            <li><a href="http://catalog.southeasttech.edu/preview_program.php?catoid=17&poid=2004&hl=%22programming%22" target="_blank">STI Curriculum</a></li>
+            <li><a href="notable.html">Notable</a></li>
+            <li><a href="Odayssey.html">Odayssey</a></li>
+        </ul>
+    </nav>
+</header>
 <body>
-
-    <div id="header-container"></div>
     <h1> Java project that utilizes Frames to track a counter of Users logged in.</h1>
     <div>
         <img src="Assets/Java/input.png" alt="input">
@@ -63,13 +75,4 @@
             stage.show();<br>
         }</blockquote>
     </div>
-
-    <script>
-        fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-container').innerHTML = data;
-        })
-        .catch(error = console.error('error loading the header', error));
-    </script>
 </body>
