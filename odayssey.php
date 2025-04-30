@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="style.css">
+<title>Odayssey App</title>
+<?php include('_partials/webservice/header.html'); ?>
+
+<h1>Odayssey</h1>
+<p>Odayssey is an App developed as a group Capstone Project. This project utlizing TypeScript, JavaScript, Node.js, and React Native.</p>
+<p>Odayssey is a self help app that provides users with a set of daily and weekly task to accomplish with the aim of improving 
+    habits and self help.</p>
+
+    <div>
+        <h4>Odayssey Login page</h4>
+        <img src="Assets/odayssey/login.png" alt="login">
+        <h4>Odayssey Main Menu</h4>
+        <P>Users can unlock additional characters to customize thier main menu experience.</P>
+        <img src="Assets/odayssey/main.png" alt="main">
+        <h4>Odayssey Task page</h4>
+        <P>Tasks are presented to the user in both daily and weekly increments. Users can see the time remaining before the next reset.</P>
+        <img src="Assets/odayssey/tasks.png" alt="task page">
+    </div>

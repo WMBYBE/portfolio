@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="style.css">
+<title>Restful Web Serive</title>
+<?php include('_partials/webservice/header.html'); ?>
+
+<h1>RESTful AJAX-JSON-PHP-MySQL DB Web Service</h1>
+<p>This project involved converting a previously created Web App to a AJAJ/PHP web service with testers for the following function: </p>
+    <ul>
+    <li>Display records in JSON format using Web App Form and the Records Tester API</li>
+    
+    <li>Display all records using AJAJ</li>
+    </ul>    
+<div>
+        <h4>Home Page</h4>
+        <img src="Assets/Restful/home page.png" alt="Home page">
+        <h4>API Tester Using JSON Input</h4>
+        <img src="Assets/Restful/APITesterInput.png" alt="JSON input">
+        <h4>API Tester Using JSON Output</h4>
+        <img src="Assets/Restful/APITesterOutput.png" alt="JSON Output">
+        <h4>Display records with AJAJ input</h4>
+        <img src="Assets/Restful/AJAJInput.png" alt="AJAJ Input">
+        <h4>Display records with AJAJ Output</h4>
+        <img src="Assets/Restful/AJAJOutput.png" alt="AJAJ Output">
+    </div>
+<div>
+    <H2> Code Snippets</H2>
+    <h4>API</h4>
+    <blockquote>
+        <xmp>
+            include('class_lib/BroW_displayTable.php');
+
+            $DB_Access = new BroW_displayTable(); 
+
+            $table = $_REQUEST['tableName'];//"products";
+
+            $DB_Result = $DB_Access->displayRecords($table);
+
+            $data = array(); 
+
+            $index = 0;
+            while($row = $DB_Result->fetch_assoc())
+            { $rValue = "";
+            foreach($row as $value)
+                {$rValue = $rValue . "$value ";}
+            $data[] = $rValue; //"TestValue";
+            }
+
+            print(json_encode($data));
+
+            ?>
+        </xmp>
+    </blockquote>
+    <H4>AJAJ Script</H4>
+    <blockquote>
+        <xmp>
+            <script>
+
+                $('#target').submit(function(event) {
+                
+                    event.preventDefault();
+                    
+                    var aTableName = $('#tableName').val();
+                                
+                    $.ajax({
+                        type: 'GET',
+                        url: '../ServiceProvider/BroW_Records_API.php',
+                        data: 'tableName=' + aTableName,
+                        dataType: 'json',
+                        encode: true
+                    })
+                    .done(function(data) {
+                        var length = data.length;
+                        var records = "Number of elements (records) in JSON Array Returned = " + length + "<br />";
+                        for (i = 0; i < length; i++) { records += data[i] + "<br>"; }
+                    
+                        $('#aMessage').html(records);
+                
+                    })
+                    .fail(function() {
+                        $('#aMessage').text('An error occurred. Please try again.');
+                    });
+                
+                    });
+                
+                </script>
+        </xmp>
+    </blockquote>
+</div>

@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="style.css">
+<title>Notable Site</title>
+<?php include('_partials/webservice/header.html'); ?>
+
+<h1>Notable PHP Project</h1>
+<p>The goal of this PHP project was to utilize a Model VIew Controller Pattern to create a Music site that allows users to view a page for Aritsts, Albums and Songs. 
+    Additional, a log-in system was utilized to force users to log in before editing any data on the site. Models were used to establish a database connection,
+aswell as to add/update/delete/list data from tables in the database.</p>
+    <div>
+        <h4>Arists Page</h4>
+        <img src="Assets/Notable/artists.png" alt="artist page">
+        <h4>Songs Page</h4>
+        <img src="Assets/Notable/songs.png" alt="songs">
+        <h4>Log in confirmation</h4>
+        <img src="Assets/Notable/logged2in.png" alt="logged in">
+    </div>

@@ -1,0 +1,129 @@
+<link rel="stylesheet" href="style.css">
+<title>Restful Web Serive</title>
+<?php include('_partials/webservice/header.html'); ?>
+
+<h1>RESTful AJAX-JSON-PHP-MySQL DB Web Service</h1>
+<p>This group project involved creating a unique CRUD AJAJ-PHP-MySQL web service that includes
+    a MySQL Database, a PHP class that provides properties of each table, a Database class that includes CRUD functions, and an API for JSON responses. </p>
+    <ul>
+    <li>Display records in JSON format using Web App Form and the Records Tester API</li>
+    
+    <li>Display all records using AJAJ</li>
+    </ul>    
+<div>
+        <h4>Home Page</h4>
+        <img src="Assets/crud/tester1.png" alt="tester">
+        <h4>API Tester Using JSON Input</h4>
+        <img src="Assets/crud/apiGet.png" alt="get API">
+        <h4>API Tester Using JSON Output</h4>
+        <img src="Assets/crud/getbyID.png" alt="Get by id">
+        <h4>UMl Diagram</h4>
+        <img src="Assets/crud/UML_Diagram.png" alt="Get by id">
+    </div>
+<div>
+    <H2>Code Snippets</H2>
+    <h4>API</h4>
+    <blockquote>
+        <xmp>
+        switch ($method) {
+    case 'GET':
+        if (isset($_GET['action'])) {
+            $action = $_GET['action'];
+            if ($action == 'getFarm' && isset($_GET['id'])) {
+                $result = $db->getFarmById($_GET['id']);
+            } elseif ($action == 'getFarm') {
+                $result = $db->getAllFarms();
+            } elseif ($action == 'getHouse' && isset($_GET['id'])) {
+                $result = $db->getHouseById($_GET['id']);
+            } elseif ($action == 'getHouse') {
+                $result = $db->getAllHouses();     
+            } elseif ($action == 'getVillager' && isset($_GET['id'])) {
+                $result = $db->getVillagerById($_GET['id']);
+            } elseif ($action == 'getVillager') {
+                $result = $db->getAllVillagers();
+            } else {
+                $result = ["message" => "Invalid action"];
+            }
+        } else {
+            $result = ["message" => "Action is required"];
+        }
+        break;
+
+    case 'POST':
+        // Handle POST request (create new records)
+        if (isset($_GET['action'])) {
+            $action = $_GET['action'];
+            $data = json_decode(file_get_contents("php://input"), true);
+            
+            if ($action == 'createFarm') {
+                $farm = new farm($data['Crop'], $data['size'], $data['price'], $data['BuildDate']);
+                $result = ["id" => $db->insertFarm($farm)];
+            } elseif ($action == 'createHouse') {
+                $house = new House($data['Address'], $data['Owner'], $data['value'], $data['BuildDate']);
+                $result = ["id" => $db->insertHouse($house)];
+            } elseif ($action == 'createVillager') {
+                $villager = new Villager($data['Name'], $data['Birthdate'], $data['Height'], $data['Job']);
+                $result = ["id" => $db->insertVillager($villager)];
+            } else {
+                $result = ["message" => "Invalid action"];
+            }
+        } else {
+            $result = ["message" => "Action is required"];
+        }
+        break;
+
+    case 'PUT':
+        if (isset($_GET['action'])) {
+            $action = $_GET['action'];
+            $data = json_decode(file_get_contents("php://input"), true);
+            
+            if ($action == 'updateFarm' && isset($data['id'])) {
+                $farm = new farm($data['Crop'], $data['size'], $data['price'], $data['BuildDate']);
+                $farm->setId($data['id']);
+                $result = ["success" => $db->updateFarm($farm)];
+            } elseif ($action == 'updateHouse' && isset($data['id'])) {
+                $house = new House($data['Address'], $data['Owner'], $data['value'], $data['BuildDate']);
+                $house->setId($data['id']);
+                $result = ["success" => $db->updateHouse($house)];
+            } elseif ($action == 'updateVillager' && isset($data['id'])) {
+                $villager = new Villager($data['Name'], $data['Birthdate'], $data['Height'], $data['Job']);
+                $villager->setId($data['id']);
+                $result = ["success" => $db->updateVillager($villager)];
+            } else {
+                $result = ["message" => "Invalid action or missing data"];
+            }
+        } else {
+            $result = ["message" => "Action is required"];
+        }
+        break;
+
+    case 'DELETE':
+        // Handle DELETE request (delete records)
+        if (isset($_GET['action'])) {
+            $action = $_GET['action'];
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                if ($action == 'deleteFarm') {
+                    $result = ["success" => $db->deleteFarm($id)];
+                } elseif ($action == 'deleteHouse') {
+                    $result = ["success" => $db->deleteHouse($id)];
+                } elseif ($action == 'deleteVillager') {
+                    $result = ["success" => $db->deleteVillager($id)];
+                } else {
+                    $result = ["message" => "Invalid action"];
+                }
+            } else {
+                $result = ["message" => "ID is required"];
+            }
+        } else {
+            $result = ["message" => "Action is required"];
+        }
+        break;
+
+    default:
+        $result = ["message" => "Invalid request method"];
+        break;
+}
+        </xmp>
+    </blockquote>
+</div>
